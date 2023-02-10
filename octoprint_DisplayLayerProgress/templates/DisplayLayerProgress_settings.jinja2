@@ -210,6 +210,9 @@
                     <label class="checkbox">Enable WebSocket-Communication<input type="checkbox" data-bind="checked: settingsViewModel.settings.plugins.DisplayLayerProgress.sendLayerInformationsViaWebSocket"/></label>
                     <label style="padding-left:21px">Enabling this flag allows other Clients (like OctoPod) or Plugins to read the above mentions values via WebSocket. If not needed, disable it to reduce network traffic.</label>
                     <br/>
+                    <label class="checkbox">Exclude Feedrate Changed from Event Firing<input type="checkbox" data-bind="checked: settingsViewModel.settings.plugins.DisplayLayerProgress.excludeEventFeedrateChanged"/></label>
+                    <label style="padding-left:21px">Enabling this flag excludes firing the feedrateChanged event, which will greatly reduce event traffic.</label>
+                    <br/>
                 </div>
 
             </div>

@@ -41,6 +41,7 @@ $(function () {
                                 self.settingsViewModel.settings.plugins.DisplayLayerProgress.layerAverageFormatPattern(data.layerAverageFormatPattern);
 //                                self.settingsViewModel.settings.plugins.DisplayLayerProgress.zMaxExpressionPattern(data.zMaxExpressionPattern);
                                 self.settingsViewModel.settings.plugins.DisplayLayerProgress.sendLayerInformationsViaWebSocket(data.sendLayerInformationsViaWebSocket);
+                                self.settingsViewModel.settings.plugins.DisplayLayerProgress.excludeEventFeedrateChanged(data.excludeEventFeedrateChanged);
                                 self.settingsViewModel.settings.plugins.DisplayLayerProgress.excludeFolders(data.excludeFolders);
                                 self.settingsViewModel.settings.plugins.DisplayLayerProgress.excludeFoldersExpression(data.excludeFoldersExpression);
                                 self.settingsViewModel.settings.plugins.DisplayLayerProgress.showTimeInNavBar(data.showTimeInNavBar);

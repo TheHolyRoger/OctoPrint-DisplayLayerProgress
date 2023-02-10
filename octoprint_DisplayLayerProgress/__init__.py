@@ -75,6 +75,7 @@ SETTINGS_KEY_LAYER_AVARAGE_FORMAT_PATTERN = "layerAverageFormatPattern"
 
 SETTINGS_KEY_SEND_LAYERINFORMATION_VIA_WEBSOCKET = "sendLayerInformationsViaWebSocket"
 
+SETTINGS_KEY_EXCLUDE_EVENT_FEEDRATE_CHANGED = "excludeEventFeedrateChanged"
 SETTINGS_KEY_EXCLUDE_FOLDERS = "excludeFolders"
 SETTINGS_KEY_EXCLUDE_FOLDERS_EXPRESSION = "excludeFoldersExpression"
 
@@ -1024,8 +1025,9 @@ class DisplaylayerprogressPlugin(
 
         if (self._lastSendEventBusData != eventPayload):
             if updateReason is not UPDATE_DISPLAY_REASON_FRONTEND_CALL:
-                eventKey = PLUGIN_KEY_PREFIX + updateReason
-                eventManager().fire(eventKey, eventPayload)
+                if not self._cachedSettings.getBooleanValue(SETTINGS_KEY_EXCLUDE_EVENT_FEEDRATE_CHANGED) or updateReason is not UPDATE_DISPLAY_REASON_FEEDRATE_CHANGED:
+                    eventKey = PLUGIN_KEY_PREFIX + updateReason
+                    eventManager().fire(eventKey, eventPayload)
 
             ##################################################### WEBSOCKET
             if self._cachedSettings.getBooleanValue(SETTINGS_KEY_SEND_LAYERINFORMATION_VIA_WEBSOCKET):
@@ -1790,6 +1792,7 @@ class DisplaylayerprogressPlugin(
             layerAverageFormatPattern="{H}h:{M:02}m:{S:02}s",
             # zMaxExpressionPattern=";MAXZ:([0-9]+[.]*[0-9]*).*",
             sendLayerInformationsViaWebSocket=True,
+            excludeEventFeedrateChanged=False,
             excludeFolders = False,
             excludeFoldersExpression = "",
             printerDisplayOutputInterval = 0,
